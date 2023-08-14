@@ -1,23 +1,33 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {ActivityIndicator} from 'react-native';
+import {TouchableOpacityBox, TouchableOpacityBoxProps} from '../Box/Box';
 import {Text} from '../Text/Text';
 
-interface PropsButton {
+interface PropsButton extends TouchableOpacityBoxProps {
   title: string;
+  loading?: boolean;
 }
-export function Button({title}: PropsButton) {
+export function Button({
+  title,
+  loading,
+  ...touchableOpacityBoxProps
+}: PropsButton) {
   return (
-    <TouchableOpacity
-      style={{
-        borderRadius: 16,
-        backgroundColor: '#074c4e',
-        paddingHorizontal: 20,
-        paddingVertical: 14,
-        alignItems: 'center',
-      }}>
-      <Text style={{color: '#fff'}} preset="headingMedium" bold>
-        {title}
-      </Text>
-    </TouchableOpacity>
+    <TouchableOpacityBox
+      backgroundColor="buttonPrimary"
+      paddingHorizontal="s20"
+      alignItems="center"
+      justifyContent="center"
+      height={50}
+      borderRadius="s16"
+      {...touchableOpacityBoxProps}>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={{color: '#fff'}} preset="headingMedium" bold>
+          {title}
+        </Text>
+      )}
+    </TouchableOpacityBox>
   );
 }
