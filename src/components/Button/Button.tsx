@@ -1,56 +1,39 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native';
-import {ThemeColors} from '../../theme/theme';
 import {TouchableOpacityBox, TouchableOpacityBoxProps} from '../Box/Box';
 import {Text} from '../Text/Text';
+import {buttonPresets} from './buttonPresets';
+import {ActivityIndicator} from 'react-native';
+export type ButtonPreset = 'primary' | 'outline';
 
-export type ButtonPreset = 'primary' | 'outline' | 'secondary';
-
-interface ButtonUI {
-  container: TouchableOpacityBoxProps;
-  content: ThemeColors;
-}
-
-const primary: ButtonUI = {
-  container: {
-    backgroundColor: 'primary',
-  },
-  content: 'primaryContrast',
-};
-
-const outline: ButtonUI = {
-  container: {
-    borderWidth: 1,
-    borderColor: 'primary',
-  },
-  content: 'primary',
-};
-interface PropsButton extends TouchableOpacityBoxProps {
+interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
   loading?: boolean;
   preset?: ButtonPreset;
+  disabled?: boolean;
 }
+
 export function Button({
   title,
   loading,
   preset = 'primary',
+  disabled,
   ...touchableOpacityBoxProps
-}: PropsButton) {
-  const buttonPreset = preset === 'primary' ? primary : outline;
+}: ButtonProps) {
+  const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
-      backgroundColor="buttonPrimary"
+      disabled={disabled || loading}
       paddingHorizontal="s20"
+      height={50}
       alignItems="center"
       justifyContent="center"
-      height={50}
       borderRadius="s16"
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       {loading ? (
-        <ActivityIndicator />
+        <ActivityIndicator color={buttonPreset.content} />
       ) : (
-        <Text preset="headingMedium" bold color={buttonPreset.content}>
+        <Text preset="paragraphMedium" bold color={buttonPreset.content}>
           {title}
         </Text>
       )}
