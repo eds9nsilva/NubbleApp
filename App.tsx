@@ -11,10 +11,11 @@ function App(): JSX.Element {
       <SafeAreaView>
         <View style={{paddingHorizontal: 24}}>
           <Text preset="headingLarge">Edson</Text>
-          <Button title="Entrar" preset="primary" marginBottom="s24" />
-          <Button title="Entrar" preset="outline" marginBottom="s24" />
+          <Button title="Entrar" preset="primary" disabled marginBottom="s24" />
+          <Button title="Entrar" preset="outline" disabled marginBottom="s24" />
+          <Button title="Entrar" preset="secondary" marginBottom="s24" />
 
-          <Button loading title="Entrar" />
+          <Button title="Entrar" />
         </View>
       </SafeAreaView>
     </ThemeProvider>

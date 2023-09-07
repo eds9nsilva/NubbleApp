@@ -44,4 +44,19 @@ export const buttonPresets: Record<
       content: 'gray2',
     },
   },
+  secondary: {
+    default: {
+      container: {
+        backgroundColor: 'carrotSecondary',
+      },
+      content: 'primaryContrast',
+    },
+    disabled: {
+      container: {
+        borderWidth: 1,
+        borderColor: 'gray4',
+      },
+      content: 'gray2',
+    },
+  },
 };
