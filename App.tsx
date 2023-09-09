@@ -1,8 +1,8 @@
 import {ThemeProvider} from '@shopify/restyle';
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
-import {EyeOffIcon} from './src/assets/icons/EyeOffIcon';
 import {Button} from './src/components/Button/Button';
+import {Icon} from './src/components/Icons/Icon';
 import {Text} from './src/components/Text/Text';
 import {theme} from './src/theme/theme';
 
@@ -15,7 +15,7 @@ function App(): JSX.Element {
           <Button title="Entrar" preset="primary" disabled marginBottom="s24" />
           <Button title="Entrar" preset="outline" disabled marginBottom="s24" />
           <Button title="Entrar" preset="secondary" marginBottom="s24" />
-          <EyeOffIcon />
+          <Icon name="eyeOn" color="error" size={40} />
           <Button title="Entrar" />
         </View>
       </SafeAreaView>
