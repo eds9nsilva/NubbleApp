@@ -49,8 +49,8 @@ export function Icon({name, color = 'backgroundContrast', size}: Props) {
 const iconRegistry = {
   eyeOn: EyeOnIcon,
   eyeOff: EyeOffIcon,
-  arrowLeftIcon: ArrowLeftIcon,
-  arrowRightIcon: ArrowRightIcon,
+  arrowLeft: ArrowLeftIcon,
+  arrowRight: ArrowRightIcon,
   bellIcon: BellIcon,
   bellOnIcon: BellOnIcon,
   bookmarkFillIcon: BookmarkFillIcon,
