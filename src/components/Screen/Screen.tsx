@@ -27,11 +27,9 @@ export function Screen({
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
         <Box
+          paddingBottom="s24"
           paddingHorizontal="s24"
-          style={{
-            paddingTop: top,
-            paddingBottom: bottom,
-          }}>
+          style={{paddingTop: top, paddingBottom: bottom}}>
           {canGoBack && (
             <Box mb="s24" flexDirection="row">
               <Icon name="arrowLeft" color="primary" />

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from '../../../components/Button/Button';
+import {PasswordInput} from '../../../components/PasswordInput/PassowrdInput';
 
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
@@ -22,6 +23,11 @@ export function LoginScreen() {
         boxProps={{mb: 's20'}}
       />
 
+      <PasswordInput
+        label="Senha"
+        placeholder="Digite sua senha"
+        boxProps={{mb: 's20'}}
+      />
       <Text color="primary" preset="paragraphSmall" bold>
         Esqueci minha senha
       </Text>
