@@ -9,7 +9,13 @@ import {RootStackParamList} from '../../../routes/Routes';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
-export function LoginScreen() {
+export function LoginScreen({navigation}: ScreenProps) {
+  function navigateToSignUpScreen() {
+    navigation.navigate('SignUpScreen');
+  }
+  function navigateToForgotPasswordScreen() {
+    navigation.navigate('ForgotPasswordScreen');
+  }
   return (
     <Screen>
       <Text marginBottom="s8" preset="headingLarge">
@@ -31,12 +37,21 @@ export function LoginScreen() {
         placeholder="Digite sua senha"
         boxProps={{mb: 's20'}}
       />
-      <Text color="primary" preset="paragraphSmall" bold>
+      <Text
+        onPress={navigateToForgotPasswordScreen}
+        color="primary"
+        preset="paragraphSmall"
+        bold>
         Esqueci minha senha
       </Text>
 
       <Button marginTop="s48" title="Entrar" />
-      <Button preset="outline" marginTop="s12" title="Criar uma conta" />
+      <Button
+        preset="outline"
+        marginTop="s12"
+        title="Criar uma conta"
+        onPress={navigateToSignUpScreen}
+      />
     </Screen>
   );
 }

@@ -1,18 +1,25 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Button} from '../../../components/Button/Button';
 import {PasswordInput} from '../../../components/PasswordInput/PassowrdInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
-import {RootStackParamList} from '../../../routes/Routes';
-
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 
 export function SignUpScreen() {
-  function submitForm() {}
+  const {reset} = useResetNavigationSuccess();
+  function submitForm() {
+    reset({
+      title: 'Sua conta foi criada com sucesso!',
+      description: 'Agora é só fazer login na nossa plataforma',
+      icon: {
+        name: 'checkRound',
+        color: 'success',
+      },
+    });
+  }
   return (
-    <Screen scrollable>
+    <Screen scrollable canGoBack>
       <Text preset="headingLarge" mb="s32">
         Criar uma conta
       </Text>
