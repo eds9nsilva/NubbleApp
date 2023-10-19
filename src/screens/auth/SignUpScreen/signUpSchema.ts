@@ -1,5 +1,6 @@
-import {stringUtils} from '../../../utils/stringsUtils';
 import {z} from 'zod';
+
+import {stringUtils} from '../../../utils/stringsUtils';
 
 const userNameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{5,29}$/gim;
 

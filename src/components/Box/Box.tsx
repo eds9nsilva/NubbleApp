@@ -1,3 +1,6 @@
+import React from 'react';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+
 import {
   createBox,
   backgroundColor,
@@ -12,8 +15,7 @@ import {
   SpacingShorthandProps,
   spacingShorthand,
 } from '@shopify/restyle';
-import React from 'react';
-import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+
 import {Theme} from '@theme';
 
 export const Box = createBox<Theme>();

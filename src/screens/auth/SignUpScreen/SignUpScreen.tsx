@@ -1,7 +1,8 @@
 import React from 'react';
-import {useForm} from 'react-hook-form';
-import {signUpSchema, SignUpSchema} from './signUpSchema';
+
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
+
 import {
   Button,
   FormPasswordInput,
@@ -9,8 +10,9 @@ import {
   Screen,
   Text,
 } from '@components';
-import {RootStackParamList} from '@routes';
 import {useResetNavigationSuccess} from '@hooks';
+
+import {signUpSchema, SignUpSchema} from './signUpSchema';
 
 const defaultValues: SignUpSchema = {
   username: '',
