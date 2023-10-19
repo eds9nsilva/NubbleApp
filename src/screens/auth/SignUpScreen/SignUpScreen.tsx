@@ -1,13 +1,16 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {Button} from '../../../components/Button/Button';
-import {FormPasswordInput} from '../../../components/Form/FormPasswordInput';
-import {FormTextInput} from '../../../components/Form/FormtextInput';
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {signUpSchema, SignUpSchema} from './signUpSchema';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {
+  Button,
+  FormPasswordInput,
+  FormTextInput,
+  Screen,
+  Text,
+} from '@components';
+import {RootStackParamList} from '@routes';
+import {useResetNavigationSuccess} from '@hooks';
 
 const defaultValues: SignUpSchema = {
   username: '',
