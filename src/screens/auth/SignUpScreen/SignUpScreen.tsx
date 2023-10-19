@@ -6,23 +6,22 @@ import {FormTextInput} from '../../../components/Form/FormtextInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
 import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
+import {signUpSchema, SignUpSchema} from './signUpSchema';
+import {zodResolver} from '@hookform/resolvers/zod';
 
-type SignUpFormType = {
-  username: string;
-  fullname: string;
-  email: string;
-  password: string;
+const defaultValues: SignUpSchema = {
+  username: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
 };
 
 export function SignUpScreen() {
   const {reset} = useResetNavigationSuccess();
-  const {control, formState, handleSubmit} = useForm<SignUpFormType>({
-    defaultValues: {
-      email: '',
-      fullname: '',
-      password: '',
-      username: '',
-    },
+  const {control, formState, handleSubmit} = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues,
     mode: 'onChange',
   });
 
@@ -44,37 +43,29 @@ export function SignUpScreen() {
       <FormTextInput
         control={control}
         name="username"
-        rules={{required: 'Username obrigatório'}}
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}
       />
       <FormTextInput
         control={control}
-        name="fullname"
-        rules={{required: 'Nome obrigatório'}}
-        label="Nome completo"
-        placeholder="Digite seu nome completo"
+        name="firstName"
+        autoCapitalize="words"
+        label="Nome"
+        placeholder="Digite seu nome"
         boxProps={{mb: 's20'}}
       />
       <FormTextInput
         control={control}
-        name="email"
-        rules={{required: 'E-mail obrigatório'}}
-        label="E-mail"
-        placeholder="Digite seu E-mail"
+        name="lastName"
+        autoCapitalize="words"
+        label="Sobrenome"
+        placeholder="Digite seu sobrenome"
         boxProps={{mb: 's20'}}
       />
       <FormPasswordInput
         control={control}
         name="password"
-        rules={{
-          required: 'Senha obrigatória',
-          minLength: {
-            value: 8,
-            message: 'Senha deve ter no mínimo 8 caracteres',
-          },
-        }}
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{mb: 's20'}}

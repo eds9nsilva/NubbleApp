@@ -7,6 +7,9 @@ import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
 import {RootStackParamList} from '../../../routes/Routes';
 import {useForm, Controller} from 'react-hook-form';
+import {LoginSchema, loginSchema} from './loginSchema';
+import {zodResolver} from '@hookform/resolvers/zod';
+
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 type LoginFormType = {
@@ -26,13 +29,15 @@ export function LoginScreen({navigation}: ScreenProps) {
     console.log(password);
   }
 
-  const {control, formState, handleSubmit} = useForm<LoginFormType>({
+  const {control, formState, handleSubmit} = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
     },
     mode: 'onChange',
   });
+
   return (
     <Screen>
       <Text marginBottom="s8" preset="headingLarge">
@@ -44,9 +49,6 @@ export function LoginScreen({navigation}: ScreenProps) {
       <Controller
         control={control}
         name="email"
-        rules={{
-          required: 'E-mail obrigatório',
-        }}
         render={({field, fieldState}) => (
           <>
             <TextInput
@@ -63,13 +65,6 @@ export function LoginScreen({navigation}: ScreenProps) {
       <Controller
         control={control}
         name="password"
-        rules={{
-          required: 'Senha obrigatória',
-          minLength: {
-            value: 8,
-            message: 'Senha deve ter no mínimo 8 caracteres',
-          },
-        }}
         render={({field, fieldState}) => (
           <>
             <PasswordInput
