@@ -11,11 +11,11 @@ import {
   FormTextInput,
   FormPasswordInput,
 } from '@components';
-import {RootStackParamList} from '@routes';
+import {AuthStackParamList} from '@routes';
 
 import {LoginSchema, loginSchema} from './loginSchema';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'LoginScreen'>;
 
 type LoginFormType = {
   email: string;
