@@ -21,6 +21,7 @@ export function PostItem({ post }: Props) {
                 reactionCount={post.reactionCount}
             />
             <PostBottom
+                id={post.id}
                 author={post.author}
                 text={post.text}
                 commentCount={post.commentCount}

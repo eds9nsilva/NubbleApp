@@ -12,12 +12,14 @@ interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  tittle?: string;
 }
 
 export function Screen({
   children,
   canGoBack = false,
   scrollable = false,
+  tittle,
   style,
   ...boxProps
 }: ScreenProps) {
@@ -45,6 +47,7 @@ export function Screen({
               <Text preset="paragraphMedium" semiBold ml="s8">
                 Voltar
               </Text>
+              {tittle && (<Text preset='headingSmall'>{tittle}</Text>)}
             </TouchableOpacityBox>
           )}
           {children}
