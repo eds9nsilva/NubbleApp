@@ -1,32 +1,28 @@
 import React from 'react';
 import {KeyboardAvoidingView, Platform} from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
-
-import {Box, BoxProps, TouchableOpacityBox, Icon, Text} from '@components';
+import {Box, BoxProps} from '@components';
 import {useAppSafeArea, useAppTheme} from '@hooks';
 
-import {ScrollViewContainer, ViewContainer} from './Components/ScreenContainer';
+import {ScrollViewContainer, ViewContainer, ScreenHeader} from './Components';
 
-interface ScreenProps extends BoxProps {
+export interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
-  tittle?: string;
+  title?: string;
 }
 
 export function Screen({
   children,
   canGoBack = false,
   scrollable = false,
-  tittle,
   style,
+  title,
   ...boxProps
 }: ScreenProps) {
   const {bottom, top} = useAppSafeArea();
   const {colors} = useAppTheme();
-
-  const navigation = useNavigation();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
   return (
@@ -38,18 +34,7 @@ export function Screen({
           paddingHorizontal="s24"
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
-          {canGoBack && (
-            <TouchableOpacityBox
-              onPress={navigation.goBack}
-              mb="s24"
-              flexDirection="row">
-              <Icon name="arrowLeft" color="primary" />
-              <Text preset="paragraphMedium" semiBold ml="s8">
-                Voltar
-              </Text>
-              {tittle && (<Text preset='headingSmall'>{tittle}</Text>)}
-            </TouchableOpacityBox>
-          )}
+          <ScreenHeader canGoBack={canGoBack} title={title} />
           {children}
         </Box>
       </Container>
