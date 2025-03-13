@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Screen } from '@components';
+import { Box, Screen } from '@components';
 import { AppScreenProps } from '@routes';
 import { PostComment, usePostCommentList } from '@domain';
 import { FlatList, ListRenderItemInfo } from 'react-native';
-import { PostCommentItem, PostCommentBottom } from './components';
+import { PostCommentItem, PostCommentBottom, PostCommentTextMessage } from './components';
 import { useAppSafeArea } from '@hooks';
 
 export function PostCommentScreen({
@@ -16,24 +16,28 @@ export function PostCommentScreen({
 
     const { data, fetchNextPage, hasNextPage } = usePostCommentList(postId);
 
+
     function renderItem({ item }: ListRenderItemInfo<PostComment>) {
         return PostCommentItem({ item });
     }
 
     return (
-        <Screen canGoBack title='Comentários'>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                contentContainerStyle={{ paddingBottom: bottom }}
-                showsVerticalScrollIndicator={false}
-                ListFooterComponent={
-                    <PostCommentBottom
-                        fetchNextPage={fetchNextPage}
-                        hasNextPage={hasNextPage}
-                    />
-                }
-            />
+        <Screen flex={1} canGoBack title='Comentários'>
+            <Box flex={1} justifyContent='space-between'>
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    contentContainerStyle={{ paddingBottom: bottom }}
+                    showsVerticalScrollIndicator={false}
+                    ListFooterComponent={
+                        <PostCommentBottom
+                            fetchNextPage={fetchNextPage}
+                            hasNextPage={hasNextPage}
+                        />
+                    }
+                />
+                <PostCommentTextMessage postId={postId} />
+            </Box>
         </Screen>
     );
 }

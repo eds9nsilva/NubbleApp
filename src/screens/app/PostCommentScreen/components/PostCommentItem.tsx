@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, ProfileAvatar, Text } from "@components";
 import { PostComment } from "@domain";
 
