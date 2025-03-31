@@ -14,7 +14,7 @@ export function PostCommentScreen({
 
     const { bottom } = useAppSafeArea();
 
-    const { data, fetchNextPage, hasNextPage } = usePostCommentList(postId);
+    const { data, fetchNextPage, hasNextPage, refresh } = usePostCommentList(postId);
 
 
     function renderItem({ item }: ListRenderItemInfo<PostComment>) {
@@ -36,7 +36,7 @@ export function PostCommentScreen({
                         />
                     }
                 />
-                <PostCommentTextMessage postId={postId} />
+                <PostCommentTextMessage postId={postId} onAddComment={refresh} />
             </Box>
         </Screen>
     );
